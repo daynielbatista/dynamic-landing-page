@@ -34,20 +34,39 @@ function setBgGreet() {
 
         if (hour < 12) {
             //Morning
-            document.body.style.backgroundImage = "url('../img/morning.jpg')";
+            document.body.style.backgroundImage = "url('img/morning.jpg')";
             greeting.textContent = 'Good Morning';
         }else if (hour < 18) {
             //Afternoon
-            document.body.style.backgroundImage = "url('../img/afternoon.jpg')";
+            document.body.style.backgroundImage = "url('img/afternoon.jpg')";
             greeting.textContent = 'Good Afternoon';
         }else{
             //Evening
-            document.body.style.backgroundImage = "url('../img/night.jpg')";
+            document.body.style.backgroundImage = "url('img/night.jpg')";
             greeting.textContent = 'Good Evening';
             document.body.style.color = 'white';
         }
 }
 
+//Get name
+function getName() {
+    if (localStorge.getItem('name') === null) {
+        name.textContent = '[Enter Name]';        
+    } else {
+        name.textContent = localStorage.getItem('name');
+    }
+}
+
+//Get focus
+function getName() {
+    if (localStorge.getItem('focus') === null) {
+        name.textContent = '[Enter Name]';        
+    } else {
+        name.textContent = localStorage.getItem('name');
+    }
+
+
 //Run 
 showTime();
 setBgGreet();
+getName();
