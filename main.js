@@ -4,8 +4,12 @@ const time = document.getElementById('time'),
     name = document.getElementById('name'),
     focus = document.getElementById('focus');
 
+    //Option
+    const showAmPm = true;
+
 //Show Time
 function showTime() {
+    //let today = new Date(2019, 06, 10, 10, 33, 30)
     let today = new Date(),
     hour = today.getHours(),
     min = today.getMinutes(),
@@ -19,6 +23,7 @@ function showTime() {
 
     //Output time
     time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
+   //${showAmPm ? amPm : ''}
     setTimeout(showTime, 1000);
 }
 
@@ -29,6 +34,7 @@ function addZero(n) {
 
 //Set Background and Greeting 
 function setBgGreet() {
+    //let today = new Date(2019, 06, 10, 10, 33, 30)
     let today = new Date(),
         hour = today.getHours();
 
@@ -44,29 +50,63 @@ function setBgGreet() {
             //Evening
             document.body.style.backgroundImage = "url('img/night.jpg')";
             greeting.textContent = 'Good Evening';
-            document.body.style.color = 'white';
+            document.body.style.color = 'blue';
         }
 }
 
 //Get name
 function getName() {
-    if (localStorge.getItem('name') === null) {
+    if (localStorage.getItem('name') === null) {
         name.textContent = '[Enter Name]';        
     } else {
         name.textContent = localStorage.getItem('name');
     }
 }
 
-//Get focus
-function getName() {
-    if (localStorge.getItem('focus') === null) {
-        name.textContent = '[Enter Name]';        
-    } else {
-        name.textContent = localStorage.getItem('name');
-    }
+//Set Name
 
+function setName(e) {
+    if (e.type ==='keypress') {
+        //Make sure enter is pressed
+        if (e.which == 13 || e.keyCode ==13) {
+            localStorage.setItem('name', e.target.innerText);
+            name.blur(); // It takes you out of this stage
+        }
+    } else {
+        localStorage.setItem('name', e.target.innerText);
+    }
+}
+
+//Get focus
+function getFocus() {
+    if (localStorage.getItem('focus') === null) {
+        focus.textContent = '[Enter Focus]';        
+    } else {
+        focus.textContent = localStorage.getItem('focus');
+    }
+}
+
+//Set Focus
+
+function setFocus(e) {
+    if (e.type ==='keypress') {
+        //Make sure enter is pressed
+        if (e.which == 13 || e.keyCode ==13) {
+            localStorage.setItem('focus', e.target.innerText);
+            focus.blur(); // It takes you out of this stage
+        }
+    } else {
+        localStorage.setItem('focus', e.target.innerText);
+    }
+}
+
+name.addEventListener('keypress', setName);
+name.addEventListener('blur', setName);
+focus.addEventListener('keypress', setFocus);
+focus.addEventListener('blur', setFocus);
 
 //Run 
 showTime();
 setBgGreet();
 getName();
+getFocus();
