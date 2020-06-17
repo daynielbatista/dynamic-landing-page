@@ -22,8 +22,8 @@ function showTime() {
     hour = hour % 12 || 12;
 
     //Output time
-    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
-   //${showAmPm ? amPm : ''}
+    time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}
+    ${showAmPm ? amPm : ''}`;
     setTimeout(showTime, 1000);
 }
 
